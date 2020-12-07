@@ -1,6 +1,6 @@
 # project-catwalk
 
-Empty project.
+Client facing web-portal designed following a 26 page business requirements document.  Build with React, Express, HTML, Bootstrap, and deployed via AWS EC2
 
 ## Building and running on localhost
 
