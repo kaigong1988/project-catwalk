@@ -15,73 +15,68 @@ class App extends React.Component {
     super();
     this.state = {
       current: undefined,
-      darkMode: false
+      darkMode: false,
     };
     this.changeCurrent = this.changeCurrent.bind(this);
-    this.setDarkMode = this.setDarkMode.bind(this)
+    this.setDarkMode = this.setDarkMode.bind(this);
   }
 
   componentDidMount() {
-    var current = this.setCurrent()
+    var current = this.setCurrent();
     if (current === undefined) {
-      window.location.search = `?id=1`
+      window.location.search = `?id=1`;
       this.setState({
         current: 1,
-        darkMode: this.state.darkMode
-      })
+        darkMode: this.state.darkMode,
+      });
     } else {
       this.setState({
         current: current,
-        darkMode: this.state.darkMode
-        })
-      }
+        darkMode: this.state.darkMode,
+      });
     }
-
-
+  }
 
   setCurrent() {
-    var searchParam = window.location.search
-    var searchParamSplit = searchParam.split('=')
-    var curItem = searchParamSplit[1]
-    return curItem
+    var searchParam = window.location.search;
+    var searchParamSplit = searchParam.split('=');
+    var curItem = searchParamSplit[1];
+    return curItem;
   }
-
 
   changeCurrent(id) {
-    console.log(id)
-    window.location.search = `?id=${id}`
+    console.log(id);
+    window.location.search = `?id=${id}`;
   }
-
 
   setDarkMode(e) {
     if (!this.state.darkMode) {
-      this.activateDarkness()
-      this.setState({ darkMode: true })
+      this.activateDarkness();
+      this.setState({ darkMode: true });
     } else {
-      window.location.reload(false)
+      window.location.reload(false);
     }
   }
-
-  
 
   // ------------------- dark mode magic ----------------------
   activateDarkness() {
     document.documentElement.style.filter = 'invert(1) hue-rotate(180deg)';
-    document.body.querySelectorAll('img, picture, video')
-      .forEach(element => element.style.filter = 'invert(1) hue-rotate(180deg)');
+    document.body
+      .querySelectorAll('img, picture, video')
+      .forEach(
+        (element) => (element.style.filter = 'invert(1) hue-rotate(180deg)')
+      );
   }
 
   render() {
     if (this.state.current === undefined) {
-      return (
-        <div>please wait</div>
-      )
+      return <div>please wait</div>;
     } else {
       return (
         <div>
           <header>
             <h1 class="main-logo">DANGO</h1>
-            <div class="search-wrap">
+            {/* <div class="search-wrap">
               <input
                 type="text"
                 class="search"
@@ -90,17 +85,18 @@ class App extends React.Component {
               <button type="submit" class="searchButton">
                 <SearchIcon />
               </button>
-            </div>
-            <div className="dark-mode-wrapper" >
-
-              <WbSunnyIcon style={{ display: "inline", marginRight: ".8rem" }} />
+            </div> */}
+            <div className="dark-mode-wrapper">
+              <WbSunnyIcon
+                style={{ display: 'inline', marginRight: '.8rem' }}
+              />
               <Form.Check
                 type="switch"
                 id="dark-mode-switch"
-                style={{ display: "inline" }}
+                style={{ display: 'inline' }}
                 onChange={this.setDarkMode}
               />
-              <Brightness3Icon style={{ display: "inline" }} />
+              <Brightness3Icon style={{ display: 'inline' }} />
             </div>
             <hr class="header-break"></hr>
           </header>
@@ -112,10 +108,10 @@ class App extends React.Component {
             />
             <ReviewMain current={this.state.current} />
           </div>
-        </div >
+        </div>
       );
     }
-  } 
+  }
 }
 
 export default hot(App);
