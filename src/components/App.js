@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var current = this.setCurrent();
+    let current = this.setCurrent();
     if (current === undefined) {
       window.location.search = `?id=1`;
       this.setState({
@@ -38,9 +38,9 @@ class App extends React.Component {
   }
 
   setCurrent() {
-    var searchParam = window.location.search;
-    var searchParamSplit = searchParam.split('=');
-    var curItem = searchParamSplit[1];
+    let searchParam = window.location.search;
+    let searchParamSplit = searchParam.split('=');
+    let curItem = searchParamSplit[1];
     return curItem;
   }
 
